@@ -122,7 +122,7 @@ jobs:
 
       - name: Setup Zig toolchain
         run: |
-          git clone https://github.com/${{ github.repository_owner }}/zig-as-llvm
+          git clone https://github.com/HomuHomu833/zig-as-llvm
           cp -R $ROOTDIR/patches/musl/zig/* $(whereis zig | awk '{print $2}' | xargs dirname)
 
       - name: Install dependencies
@@ -246,6 +246,7 @@ jobs:
             -DLLVM_BUILD_EXAMPLES=OFF \
             -DLLVM_BUILD_TESTS=OFF \
             -DLLVM_BUILD_TOOLS=ON \
+            -DLLVM_INSTALL_BINUTILS_SYMLINKS=ON \
             -DLLVM_INCLUDE_TESTS=OFF \
             -DCLANG_INCLUDE_TESTS=OFF \
             -DCLANG_BUILD_TESTS=OFF \
@@ -273,7 +274,7 @@ jobs:
             -DLLVM_ENABLE_CURL=OFF \
             -DLLVM_ENABLE_THREADS=ON \
             -DLLVM_VERSION_SUFFIX="" \
-            -DCLANG_VENDOR="Android" \
+            -DCLANG_VENDOR="llvm-custom (Internal)" \
             -DCLANG_REPOSITORY_STRING="https://github.com/${{ github.repository_owner }}/llvm-custom" \
             -DPACKAGE_BUGREPORT="https://github.com/${{ github.repository_owner }}/android-ndk-custom/issues/"
 
